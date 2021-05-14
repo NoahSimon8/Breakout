@@ -1,10 +1,6 @@
 import gym
-import random
-import numpy as np
-from time import*
-from GenAlg.GeneticAlgorithemFast import*
-from GenAlg.GeneToNetwork import*
-import os
+from Breakout.GenAlg.GeneticAlgorithemFast import*
+from Breakout.GenAlg.GeneToNetwork import*
 
 """
     
