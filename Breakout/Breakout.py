@@ -2,16 +2,12 @@ import gym
 import random
 import numpy as np
 from time import*
-from Faster.GeneticAlgorithemFast import*
-from Faster.GeneToNetwork import*
+from GenAlg.GeneticAlgorithemFast import*
+from GenAlg.GeneToNetwork import*
 import os
 
 """
-Notes:
-Ball spawns most but not all of the time
-Edit gene size to make it only move left or right
-
-
+    
 """
 
 def mutation(new,rate):
