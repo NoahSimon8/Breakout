@@ -1,6 +1,6 @@
 import gym
-from Breakout.GenAlg.GeneticAlgorithemFast import*
-from Breakout.GenAlg.GeneToNetwork import*
+from GenAlg.GeneticAlgorithemFast import*
+from GenAlg.GeneToNetwork import*
 
 """
     
