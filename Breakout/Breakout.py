@@ -17,7 +17,7 @@ def reward(gene):
     rewards=[]
     # print(len(gene))
     for i in gene:
-        n=network(i,[128,10,20,2])
+        n=network(i,[128,30,30,2])
         env.reset()
         env.step(1)
         env.step(1)
@@ -56,7 +56,7 @@ def reward(gene):
     return rewards
 
 env=gym.make("Breakout-ram-v0",frameskip=1)
-g=Algorithem(1520,30,reward,mutation)
+g=Algorithem(4800,30,reward,mutation)
 dropoutrate=0
 print("LOOP")
 try:
@@ -66,14 +66,14 @@ try:
 except:
     print("starting new")
     genes, best, topscore = g.generation()
-mut=0.15
-for i in range(600):
+mut=0.02
+for i in range(200000):
     print("ITERATION", i)
     genes, best, topscore=g.generation(genes,best,mut)
     if topscore<-2:
         mut=0.0005
 
-    if i%5==0:
+    if i%20==0:
         print(i, "Top Score: "+str(topscore))
 
         if dropoutrate<0.5:
