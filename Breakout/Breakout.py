@@ -78,7 +78,7 @@ for i in range(args[1]):
 
     if i%1==0:
         print ("Iteration: "+str(i), "Top Score: "+str(topscore), "Low Score: "+str(lowscore), "Mutation Rate: "+str(mut))
-    
+
         if dropoutrate<0.5:
             dropoutrate+=0.1
 np.save("save.npy",np.array(genes))
