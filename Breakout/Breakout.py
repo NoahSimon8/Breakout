@@ -81,7 +81,7 @@ for i in range(args[1]):
 
         if dropoutrate<0.5:
             dropoutrate+=0.1
-np.save("save.npy",np.array(genes))
+np.save("save.npy",np.array(genes[best]))
 print("Top Score: "+str(topscore), "Composition: ", genes[best])
 
 
