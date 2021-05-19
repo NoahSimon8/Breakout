@@ -50,5 +50,6 @@ class Algorithem:
 
             newbest=np.argmin(self.rewards)
         topscore=min(self.rewards)
-        return  self.genes,newbest,topscore
+        lowscore=max(self.rewards)
+        return  self.genes,newbest,topscore, lowscore
 

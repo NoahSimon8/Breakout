@@ -67,14 +67,14 @@ except:
     print("starting new")
     genes, best, topscore = g.generation()
 mut=0.02
-for i in range(200000):
+for i in range(300):
     print("ITERATION", i)
-    genes, best, topscore=g.generation(genes,best,mut)
+    genes, best, topscore,lowscore =g.generation(genes,best,mut)
     if topscore<-2:
         mut=0.0005
 
-    if i%20==0:
-        print(i, "Top Score: "+str(topscore))
+    if i%5==0:
+        print ("Top Score: "+str(topscore), "Low Score: "+str(lowscore, "Mutation Rate: "+str(mut)))
 
         if dropoutrate<0.5:
             dropoutrate+=0.1
