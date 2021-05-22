@@ -74,7 +74,7 @@ for i in range(args[1]):
     print(args[1],args[2])
     genes, best, topscore,lowscore =g.generation(genes,best,mut)
     if topscore<-2:
-        mut=0.0005
+        mut-=0.001
 
     if i%1==0:
         print ("Iteration: "+str(i), "Top Score: "+str(topscore), "Low Score: "+str(lowscore), "Mutation Rate: "+str(mut))
