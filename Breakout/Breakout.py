@@ -11,6 +11,15 @@ args[1]=int(args[1])
 args[2]=int(args[2])
 
 
+
+"""
+IDEA: Run several games on each person in a generation
+To Do: make it so I can close my computer and have it run
+
+"""
+
+
+
 def mutation(new,rate):
     for n, j in enumerate(new):
         if uniform(0, 1) <= rate:
@@ -69,12 +78,12 @@ print("LOOP")
 #     best=0
 #     print("resuming")
 genes, best, topscore, lowscore = g.generation()
-mut=0.03
+mut=0.008
 for i in range(args[1]):
     genes, best, topscore,lowscore =g.generation(genes,best,mut)
-    if topscore<-2:
-        if mut>0.0005:
-            mut-=0.0005
+    # if topscore<-2:
+    #     if mut>0.0005:
+    #         mut-=0.0005
 
     if i%1==0:
         print ("Iteration: "+str(i), "Top Score: "+str(topscore), "Low Score: "+str(lowscore), "Mutation Rate: "+str(mut))
