@@ -14,7 +14,7 @@ class Algorithem:
         self.mutation=mutation
 
     def testing(self,x):
-        print(x)
+        print(len(x),x[1].shape)
 
     def generation(self,prev="None",best=None,mut=0):
         start = time()
