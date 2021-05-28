@@ -115,5 +115,3 @@ if __name__=="__main__":
     # print(ob.size,reward, info)
 
     env.close()
-else:
-    print("Not main")
