@@ -14,7 +14,7 @@ class Algorithem:
         self.mutation=mutation
 
     def testing(self,x):
-        return x**2
+        print(x)
 
     def generation(self,prev="None",best=None,mut=0):
         start = time()
@@ -52,7 +52,7 @@ class Algorithem:
 
             p=Pool(1)
             print("start")
-            print(p.map(self.testing,self.genes))
+            p.map(self.testing,self.genes)
             # self.rewards=p.map(self.reward, self.genes)
             # print("end")
             # self.genes[np.argmax(self.rewards)]=prev[best] #eletism?
