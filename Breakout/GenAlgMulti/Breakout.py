@@ -43,11 +43,11 @@ def reward(gene):
         # moves={0:0,1:0,2:0,3:0}
         prevob = ob
         while True:
-            # env.render()  
+            # env.render()
             ob=np.array([ob])
             prevlives=info["ale.lives"]
             move=(n.predict(ob,0,prevob))+2
-            print(move)
+            # print(move)
             move=np.argmax(move)
             # print(move, "MOVE")
             # moves[move]+=1

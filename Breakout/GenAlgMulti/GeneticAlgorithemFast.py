@@ -50,6 +50,7 @@ class Algorithem:
             p=Pool(2)
             print("A")
             self.rewards=p.map(self.reward, self.genes)
+            print(self.rewards)
             self.genes[np.argmax(self.rewards)]=prev[best] #eletism?
 
             newbest=np.argmin(self.rewards)
