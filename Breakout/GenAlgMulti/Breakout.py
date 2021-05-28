@@ -1,4 +1,6 @@
 import gym
+import numpy as np
+
 from GeneticAlgorithemFast import*
 from GeneToNetwork import*
 import sys
@@ -41,10 +43,12 @@ def reward(gene):
         # moves={0:0,1:0,2:0,3:0}
         prevob = ob
         while True:
-            # env.render()
+            # env.render()  
             ob=np.array([ob])
             prevlives=info["ale.lives"]
-            move=np.argmax(n.predict(ob,0,prevob))+2
+            move=(n.predict(ob,0,prevob))+2
+            print(move)
+            move=np.argmax(move)
             # print(move, "MOVE")
             # moves[move]+=1
             prevob=ob
