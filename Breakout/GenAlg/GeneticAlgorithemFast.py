@@ -48,7 +48,7 @@ class Algorithem:
 
 
 
-            self.rewards=self.reward(self.genes)
+            self.rewards=self.reward(   self.genes)
             self.genes[np.argmax(self.rewards)]=prev[best] #eletism?
 
             newbest=np.argmin(self.rewards)
