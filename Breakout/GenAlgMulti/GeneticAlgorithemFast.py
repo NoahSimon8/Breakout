@@ -47,7 +47,7 @@ class Algorithem:
                 self.genes.append(new)
 
 
-            p=Pool(2)
+            p=Pool(1)
             print("a")
             self.rewards=p.map(self.reward, self.genes)
             # print(self.rewards)
