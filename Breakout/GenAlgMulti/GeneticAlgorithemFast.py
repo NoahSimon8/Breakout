@@ -22,7 +22,7 @@ class Algorithem:
             self.rewards=[]
             for i in range(self.popsize):
                 self.genes.append(np.random.rand(self.gensize)*2-1)
-
+            self.genes=np.array(self.genes)
             self.rewards=self.reward(self.genes)
             # print(self.rewards)
 
