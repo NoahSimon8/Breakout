@@ -38,15 +38,15 @@ def reward(gene):
         ob, reward, done, info = env.step(1)
         score1=0
         score2=0
-        moves={0:0,1:0,2:0,3:0}
+        # moves={0:0,1:0,2:0,3:0}
         prevob = ob
         while True:
             # env.render()
             ob=np.array([ob])
             prevlives=info["ale.lives"]
             move=np.argmax(n.predict(ob,0,prevob))+2
-            moves[move]+=1
-            prevob=ob
+            # moves[move]+=1
+            prevob=ob   
 
 
             ob, reward, done,info=env.step(move)
