@@ -73,45 +73,47 @@ def reward(gene):
         rewards.append(score1+score2)
         # print(score1+score2)
     return rewards
+if __name__=="__main__":
+    env=gym.make("Breakout-ram-v0",frameskip=1)
+    g=Algorithem(4800,args[2],reward,mutation)
+    dropoutrate=0
+    print("LOOP")
+    # try:
+    #     genes=np.load("save.npy")
+    #     best=0
+    #     print("resuming")
+    genes, best, topscore, lowscore = g.generation()
+    mut=0.008
+    for i in range(args[1]):
+        genes, best, topscore,lowscore =g.generation(genes,best,mut)
+        # if topscore<-2:
+        #     if mut>0.0005:
+        #         mut-=0.0005
 
-env=gym.make("Breakout-ram-v0",frameskip=1)
-g=Algorithem(4800,args[2],reward,mutation)
-dropoutrate=0
-print("LOOP")
-# try:
-#     genes=np.load("save.npy")
-#     best=0
-#     print("resuming")
-genes, best, topscore, lowscore = g.generation()
-mut=0.008
-for i in range(args[1]):
-    genes, best, topscore,lowscore =g.generation(genes,best,mut)
-    # if topscore<-2:
-    #     if mut>0.0005:
-    #         mut-=0.0005
+        if i%1==0:
+            print ("Iteration: "+str(i), "Top Score: "+str(topscore), "Low Score: "+str(lowscore), "Mutation Rate: "+str(mut))
 
-    if i%1==0:
-        print ("Iteration: "+str(i), "Top Score: "+str(topscore), "Low Score: "+str(lowscore), "Mutation Rate: "+str(mut))
-
-        if dropoutrate<0.5:
-            dropoutrate+=0.1
-np.save("save.npy",np.array(genes[best]))
-print("Top Score: "+str(topscore), "Composition: ", genes[best])
-
-
+            if dropoutrate<0.5:
+                dropoutrate+=0.1
+    np.save("save.npy",np.array(genes[best]))
+    print("Top Score: "+str(topscore), "Composition: ", genes[best])
 
 
 
-# n=network(genes[best],[128,10,20,2])
-# ob = env.reset()
-# while True:
-#     ob=np.array([ob])
-#     env.render()
-#     ob, reward, done,info=env.step(np.argmax(n.predict(ob,0)))
-#     if info['ale.lives']==4:
-#         break
 
 
-# print(ob.size,reward, info)
+    # n=network(genes[best],[128,10,20,2])
+    # ob = env.reset()
+    # while True:
+    #     ob=np.array([ob])
+    #     env.render()
+    #     ob, reward, done,info=env.step(np.argmax(n.predict(ob,0)))
+    #     if info['ale.lives']==4:
+    #         break
 
-env.close()
+
+    # print(ob.size,reward, info)
+
+    env.close()
+else:
+    print("Not main")

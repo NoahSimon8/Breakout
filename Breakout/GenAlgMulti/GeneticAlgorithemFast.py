@@ -48,9 +48,9 @@ class Algorithem:
 
 
             p=Pool(1)
-            print("a")
+            print("start")
             self.rewards=p.map(self.reward, self.genes)
-            # print(self.rewards)
+            print("end")
             self.genes[np.argmax(self.rewards)]=prev[best] #eletism?
 
             newbest=np.argmin(self.rewards)
