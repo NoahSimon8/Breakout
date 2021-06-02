@@ -5,7 +5,7 @@ import sys
 import os
 args=sys.argv
 
-if len(args)<2:
+if len(args)<1:
     args=[50,100] #iterations then generation size
 args[1]=int(args[1])
 args[2]=int(args[2])
@@ -30,6 +30,7 @@ def mutation(new,rate):
 def reward(gene):
     rewards=[]
     # print(len(gene))
+    print(gene[0].shape)
     for i in gene:
         n=network(i,[128,30,30,2])
         env.reset()

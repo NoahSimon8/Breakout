@@ -25,8 +25,8 @@ class Algorithem:
             self.rewards=[]
             for i in range(self.popsize):
                 self.genes.append(np.random.rand(self.gensize)*2-1)
-            self.rewards=self.reward(self.genes)
-
+            p = Pool(1)
+            self.rewards = p.map(self.reward, self.genes)
             newbest=np.argmin(self.rewards)
         else:
             self.genes=[]
@@ -48,16 +48,14 @@ class Algorithem:
                 new=self.mutation(new,mut)
 
                 self.genes.append(new)
-
-
-            p=Pool(1)
-            print("start")
-            p.map(self.testing,self.genes)
-            # self.rewards=p.map(self.reward, self.genes)
-            # print("end")
-            # self.genes[np.argmax(self.rewards)]=prev[best] #eletism?
-
+            print("START")
+            start=time()
+            p=Pool(2)
+            self.rewards=p.map(self.reward, self.genes)
+            self.genes[np.argmax(self.rewards)]=prev[best] #eletism?
             newbest=np.argmin(self.rewards)
+            end=time()
+            print(end-start)
         topscore=min(self.rewards)
         lowscore=max(self.rewards)
         return  self.genes,newbest,topscore, lowscore
