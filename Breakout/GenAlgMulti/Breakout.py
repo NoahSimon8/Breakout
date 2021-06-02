@@ -30,51 +30,44 @@ def mutation(new,rate):
 
 
 def reward(gene):
-    rewards=[]
-    print(len(gene),gene[0].shape)
-    for i in gene:
-        n=network(i,[128,30,30,2])
-        env.reset()
-        env.step(1)
-        env.step(1)
-        ob, reward, done, info = env.step(1)
-        score1=0
-        score2=0
-        # moves={0:0,1:0,2:0,3:0}
-        prevob = ob
-        while True:
-            # env.render()
-            ob=np.array([ob])
-            prevlives=info["ale.lives"]
-            move=(n.predict(ob,0,prevob))+2
-            # print(move)
-            move=np.argmax(move)
-            # print(move, "MOVE")
-            # moves[move]+=1
-            prevob=ob
-
-
-            ob, reward, done,info=env.step(move)
-            if reward!=0:
-                # print("YES",reward)
-                # if reward>1:
-                #     print(moves)
-                score2-=reward
-                # print(moves)
-
-            if info['ale.lives']<prevlives:
-                # score1-=1
-                # print("lost")
-                break
-            if done==True:
-                # print("end")
-                break
-        env.close()
-        rewards.append(score1+score2)
-        # print(score1+score2)
-    return rewards
-if __name__=="__main__":
     env=gym.make("Breakout-ram-v0",frameskip=1)
+    rewards=[]
+    # print(len(gene),gene[0].shape)
+    n=network(gene,[128,30,30,2])
+    env.reset()
+    env.step(1)
+    env.step(1)
+    ob, reward, done, info = env.step(1)
+    score1=0
+    score2=0
+    # moves={0:0,1:0,2:0,3:0}
+    prevob = ob
+    while True:
+        # env.render()
+        ob=np.array([ob])
+        prevlives=info["ale.lives"]
+        move=(n.predict(ob,0,prevob))+2
+        move=np.argmax(move)
+        # moves[move]+=1
+        prevob=ob
+
+
+        ob, reward, done,info=env.step(move)
+        if reward!=0:
+            # if reward>1:
+            score2-=reward
+
+        if info['ale.lives']<prevlives:
+            # score1-=1
+            break
+        if done==True:
+            break
+    env.close()
+    rewards.append(score1+score2)
+    return rewards
+
+
+if __name__=="__main__":
     g=Algorithem(4800,args[2],reward,mutation)
     dropoutrate=0
     print("LOOP")
@@ -114,4 +107,3 @@ if __name__=="__main__":
 
     # print(ob.size,reward, info)
 
-    env.close()
