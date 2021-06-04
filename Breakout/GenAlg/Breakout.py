@@ -6,7 +6,7 @@ import os
 args=sys.argv
 
 if len(args)<1:
-    args=[50,100] #iterations then generation size
+    args=["Breakout.py",50,100] #iterations then generation size
 args[1]=int(args[1])
 args[2]=int(args[2])
 

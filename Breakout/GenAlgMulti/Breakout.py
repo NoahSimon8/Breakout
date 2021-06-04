@@ -6,12 +6,13 @@ from GeneToNetwork import*
 import sys
 import os
 args=sys.argv
+print(args)
+if len(args)<3:
+    args=["Breakout.py",50,100,1] #iterations then generation size
 
-if len(args)<2:
-    args=[50,100] #iterations then generation size
 args[1]=int(args[1])
 args[2]=int(args[2])
-
+args[3]=int(args[3])
 
 
 """
@@ -78,7 +79,7 @@ if __name__=="__main__":
     genes, best, topscore, lowscore = g.generation()
     mut=0.008
     for i in range(args[1]):
-        genes, best, topscore,lowscore =g.generation(genes,best,mut)
+        genes, best, topscore,lowscore =g.generation(genes,best,mut,args[3])
         # if topscore<-2:
         #     if mut>0.0005:
         #         mut-=0.0005

@@ -16,7 +16,7 @@ class Algorithem:
     def testing(self,x):
         print(len(x),x[1].shape)
 
-    def generation(self,prev="None",best=None,mut=0):
+    def generation(self,prev="None",best=None,mut=0,poolsize=1):
         start = time()
 
         # print(__name__)
@@ -50,7 +50,7 @@ class Algorithem:
                 self.genes.append(new)
             print("START")
             start=time()
-            p=Pool(2)
+            p=Pool(poolsize)
             self.rewards=p.map(self.reward, self.genes)
             end=time()
             print(end-start)
