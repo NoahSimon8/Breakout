@@ -50,7 +50,7 @@ class Algorithem:
                 self.genes.append(new)
             print("START")
             start=time()
-            p=Pool(1)
+            p=Pool(2)
             self.rewards=p.map(self.reward, self.genes)
             end=time()
             print(end-start)
