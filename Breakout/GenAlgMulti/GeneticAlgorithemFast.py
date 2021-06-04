@@ -25,7 +25,7 @@ class Algorithem:
             self.rewards=[]
             for i in range(self.popsize):
                 self.genes.append(np.random.rand(self.gensize)*2-1)
-            p = Pool(1)
+            p = Pool(poolsize)
             self.rewards = p.map(self.reward, self.genes)
             newbest=np.argmin(self.rewards)
         else:
