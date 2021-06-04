@@ -50,12 +50,12 @@ class Algorithem:
                 self.genes.append(new)
             print("START")
             start=time()
-            p=Pool(2)
+            p=Pool(1)
             self.rewards=p.map(self.reward, self.genes)
-            self.genes[np.argmax(self.rewards)]=prev[best] #eletism?
-            newbest=np.argmin(self.rewards)
             end=time()
             print(end-start)
+            self.genes[np.argmax(self.rewards)]=prev[best] #eletism?
+            newbest=np.argmin(self.rewards)
         topscore=min(self.rewards)
         lowscore=max(self.rewards)
         return  self.genes,newbest,topscore, lowscore

@@ -2,29 +2,29 @@ from time import*
 import gym
 import random
 import numpy as np
-from GenAlg.GeneticAlgorithemFast import*
-from GenAlg.GeneToNetwork import*
+from GeneticAlgorithemFast import*
+from GeneToNetwork import*
 env=gym.make("Breakout-ram-v0")
 
 weights=[np.load("save.npy")]
 print(weights)
 # print(weights.shape)
 
-# n=network(weights,[128,30,30,2])
-#
-# for i in range(20):
-#     ob = env.reset()
-#     env.step(1)
-#     env.step(1)
-#     ob, reward, done, info = env.step(1)
-#     while True:
-#         sleep(0.02)
-#         ob=np.array([ob])
-#         env.render()
-#         ob, reward, done,info=env.step(np.argmax(n.predict(ob,0,ob)))
-#         if info['ale.lives']==4:
-#             env.close()
-#             break
+n=network(weights,[128,30,30,2])
+
+for i in range(20):
+    ob = env.reset()
+    env.step(1)
+    env.step(1)
+    ob, reward, done, info = env.step(1)
+    while True:
+        sleep(0.02)
+        ob=np.array([ob])
+        env.render()
+        ob, reward, done,info=env.step(np.argmax(n.predict(ob,0,ob))+2)
+        if info['ale.lives']==4:
+            env.close()
+            break
 
 def reward(gene):
     rewards=[]

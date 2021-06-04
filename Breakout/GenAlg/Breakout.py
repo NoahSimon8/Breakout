@@ -30,7 +30,7 @@ def mutation(new,rate):
 def reward(gene):
     rewards=[]
     # print(len(gene))
-    print(gene[0].shape)
+    # print(gene[0].shape)
     for i in gene:
         n=network(i,[128,30,30,2])
         env.reset()
