@@ -6,7 +6,7 @@ from GeneToNetwork import*
 import sys
 import os
 args=sys.argv
-print(args)
+# print(args)
 if len(args)<3:
     args=["Breakout.py",50,100,1] #iterations then generation size
 
@@ -31,52 +31,52 @@ def mutation(new,rate):
 
 
 def reward(gene):
+    print("LEN GEN", len(gene))
     env=gym.make("Breakout-ram-v0",frameskip=1)
+
     rewards=[]
     # print(len(gene),gene[0].shape)
-    n=network(gene,[128,30,30,2])
-    env.reset()
-    env.step(1)
-    env.step(1)
-    ob, reward, done, info = env.step(1)
-    score1=0
-    score2=0
-    # moves={0:0,1:0,2:0,3:0}
-    prevob = ob
-    while True:
-        # env.render()
-        ob=np.array([ob])
-        prevlives=info["ale.lives"]
-        move=(n.predict(ob,0,prevob))+2
-        move=np.argmax(move)
-        # moves[move]+=1
-        prevob=ob
+    for i in gene:
+        n=network(i["gene"],[128,30,30,2])
+        env.reset()
+        env.step(1)
+        env.step(1)
+        ob, reward, done, info = env.step(1)
+        score1=0
+        score2=0
+        # moves={0:0,1:0,2:0,3:0}
+        prevob = ob
+        while True:
+            # env.render()
+            ob=np.array([ob])
+            prevlives=info["ale.lives"]
+            move=(n.predict(ob,0,prevob))+2
+            move=np.argmax(move)
+            # moves[move]+=1
+            prevob=ob
 
 
-        ob, reward, done,info=env.step(move)
-        if reward!=0:
-            # if reward>1:
-            score2-=reward
+            ob, reward, done,info=env.step(move)
+            if reward!=0:
+                # if reward>1:
+                score2-=reward
 
-        if info['ale.lives']<prevlives:
-            # score1-=1
-            break
-        if done==True:
-            break
-    env.close()
-    rewards.append(score1+score2)
+            if info['ale.lives']<prevlives:
+                # score1-=1
+                break
+            if done==True:
+                break
+        env.close()
+        rewards.append({"score":score1+score2,"index":i["index"]})
+
     return rewards
 
 
 if __name__=="__main__":
     g=Algorithem(4800,args[2],reward,mutation)
     dropoutrate=0
-    print("LOOP")
-    # try:
-    #     genes=np.load("save.npy")
-    #     best=0
-    #     print("resuming")
-    genes, best, topscore, lowscore = g.generation()
+    genes, best, topscore, lowscore = g.generation(poolsize=args[3])
+
     mut=0.008
     for i in range(args[1]):
         genes, best, topscore,lowscore =g.generation(genes,best,mut,args[3])
@@ -86,7 +86,6 @@ if __name__=="__main__":
 
         if i%1==0:
             print ("Iteration: "+str(i), "Top Score: "+str(topscore), "Low Score: "+str(lowscore), "Mutation Rate: "+str(mut))
-
             if dropoutrate<0.5:
                 dropoutrate+=0.1
     np.save("save.npy",np.array(genes[best]))
