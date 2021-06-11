@@ -31,11 +31,9 @@ def mutation(new,rate):
 
 
 def reward(gene):
-    print("LEN GEN", len(gene))
     env=gym.make("Breakout-ram-v0",frameskip=1)
 
     rewards=[]
-    # print(len(gene),gene[0].shape)
     for i in gene:
         n=network(i["gene"],[128,30,30,2])
         env.reset()

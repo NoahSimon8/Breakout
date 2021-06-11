@@ -19,7 +19,6 @@ class Algorithem:
     def generation(self,prev="None",best=None,mut=0,poolsize=1):
         start = time()
 
-        # print(__name__)
         if prev=="None":
             self.genes=[]
             self.rewards=[]
@@ -28,13 +27,11 @@ class Algorithem:
             splitgenes = []
             splitter = int(len(self.genes) / poolsize)
             remaindernum=len(self.genes)%splitter
-            print("REMAINDER NUM",remaindernum)
             remainders=self.genes[(len(self.genes)-remaindernum):]
             for i in range(len(remainders)):
                 remainders[i]={"index":i+(len(self.genes)-remaindernum),"gene":remainders[i]}
 
 
-            print("REMAINDERS LENGTH",len(remainders))
             for i in range(poolsize):
                 splitgenes.append(self.genes[splitter * i : splitter * i + splitter])
                 for n in range(len(splitgenes[i])):
@@ -105,8 +102,6 @@ class Algorithem:
             self.genes[np.argmax(self.rewards)]=prev[best] #eletism?
             newbest = np.argmin(self.rewards)
             end=time()
-            # print(end-start)
-            print(self.rewards)
 
         topscore=min(self.rewards)
         lowscore=max(self.rewards)
