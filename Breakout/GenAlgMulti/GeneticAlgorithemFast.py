@@ -42,7 +42,8 @@ class Algorithem:
 
             p = Pool(poolsize)
             unlisted = p.map(self.reward, splitgenes)
-            p.join()
+            p.close()
+            p.terminate()
             self.rewards=[unlisted[0]]
             if len(unlisted)>=2:
                 for i in range(len(unlisted)-1):
@@ -91,8 +92,8 @@ class Algorithem:
 
             p = Pool(poolsize)
             unlisted = p.map(self.reward, splitgenes)
-            p.join()
-
+            p.close()
+            p.terminate()
             self.rewards = [unlisted[0]]
             if len(unlisted) >= 2:
                 for i in range(len(unlisted) - 1):
