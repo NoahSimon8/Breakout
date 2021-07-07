@@ -73,21 +73,21 @@ def reward(gene):
 if __name__=="__main__":
     g=Algorithem(4800,args[2],reward,mutation)
     dropoutrate=0
-    genes, best, topscore, lowscore = g.generation(poolsize=args[3])
+    genes, best, topscore, lowscore, avgscore = g.generation(poolsize=args[3])
 
     mut=0.008
     for i in range(args[1]):
-        genes, best, topscore,lowscore =g.generation(genes,best,mut,args[3])
+        genes, best, topscore,lowscore, avgscore =g.generation(genes,best,mut,args[3])
         # if topscore<-2:
         #     if mut>0.0005:
         #         mut-=0.0005
 
         if i%1==0:
-            print ("Iteration: "+str(i), "Top Score: "+str(topscore), "Low Score: "+str(lowscore), "Mutation Rate: "+str(mut))
+            print ("Iteration: "+str(i), "Top Score: "+str(topscore),"Average Score: "+str(avgscore), "Low Score: "+str(lowscore), "Mutation Rate: "+str(mut))
             if dropoutrate<0.5:
                 dropoutrate+=0.1
     np.save("save.npy",np.array(genes[best]))
-    print("Top Score: "+str(topscore), "Composition: ", genes[best])
+    # print("Top Score: "+str(topscore), "Composition: ", genes[best])
 
 
 

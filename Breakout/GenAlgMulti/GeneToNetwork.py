@@ -34,22 +34,12 @@ class network():
             w[i]=np.array(w[i]).reshape(self.layerinfo[i],self.layerinfo[i+1])
         self.w=w
 
-        #
-        # self.w1=np.array(self.w1)
-        # self.w2=np.array(self.w2)
-        # self.w3=np.array(self.w3)
-        # self.w1=self.w1.reshape(self.insize,self.midsize1)
-        # self.w2=self.w2.reshape(self.midsize1,self.midsize2)
-        # self.w3=self.w3.reshape(self.midsize2,self.endsize)
-
 
 
     def predict(self,inputs,droprate,prev):
-        # print(inputs)
-        # print(prev)
-        # print(inputs-prev)
+
         inputs=inputs/255
-        #
+        # dropout layer below
         # drop=np.array([0 if random.uniform(0,1)<droprate else 1 for i in range(self.insize*self.midsize1)]).reshape(self.insize,self.midsize1)
         # self.w1=self.w1*drop
         # drop=np.array([0 if random.uniform(0,1)<droprate else 1 for i in range(self.midsize1*self.midsize2)]).reshape(self.midsize1,self.midsize2)
@@ -63,16 +53,6 @@ class network():
         for i in self.w:
             cur=cur.dot(i)
             cur=self.sigmoid(cur)
-        # mid1=inputs.dot(self.w1)
-        # mid1=self.sigmoid(mid1)
-        # mid2=mid1.dot(self.w2)
-        # mid2=self.sigmoid(mid2)
-        # end=mid2.dot(self.w3)
-        # end=self.sigmoid(end)
-        #
-        #
-        # input()
-        # print(cur)
         return cur
 
 

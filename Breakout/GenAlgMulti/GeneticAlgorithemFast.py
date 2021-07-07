@@ -109,5 +109,6 @@ class Algorithem:
 
         topscore=min(self.rewards)
         lowscore=max(self.rewards)
-        return  self.genes,newbest,topscore, lowscore
+        avgscore=sum(self.rewards)/len(self.rewards)
+        return  self.genes,newbest,topscore, lowscore, avgscore
 

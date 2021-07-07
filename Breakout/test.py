@@ -6,6 +6,5 @@ from time import*
 # from Faster.GeneToNetwork import*
 import os
 
-
-lst=[[{"j":0}],[{"b":1}]]
-print(lst[0]+lst[1])
+lst=[1,2,3]
+print(lst+2)
