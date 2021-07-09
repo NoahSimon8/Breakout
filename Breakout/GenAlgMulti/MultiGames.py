@@ -35,31 +35,32 @@ def reward(gene):
 
     rewards=[]
     for i in gene:
-        n=network(i["gene"],[128,30,30,4])
-        env.reset()
-        env.step(1)
-        env.step(1)
-        ob, reward, done, info = env.step(1)
-        score=0
-        prevob = ob
-        while True:
-            ob=np.array([ob])
-            prevlives=info["ale.lives"]
-            move=np.argmax(n.predict(ob,0,prevob))
-            # move=np.argmax(move)
-            # moves[move]+=1
-            prevob=ob
+        score = 0
+        for n in range(3):
+            n=network(i["gene"],[128,30,30,4])
+            env.reset()
+            env.step(1)
+            env.step(1)
+            ob, reward, done, info = env.step(1)
+            prevob = ob
+            while True:
+                ob=np.array([ob])
+                prevlives=info["ale.lives"]
+                move=np.argmax(n.predict(ob,0,prevob))
+                # move=np.argmax(move)
+                # moves[move]+=1
+                prevob=ob
 
 
-            ob, reward, done,info=env.step(move)
-            if reward!=0:
-                # if reward>1:
-                score-=reward
+                ob, reward, done,info=env.step(move)
+                if reward!=0:
+                    score-=reward
 
-            if info['ale.lives']<prevlives:
-                break
-            if done==True:
-                break
+                if info['ale.lives']<prevlives:
+                    break
+                if done==True:
+                    break
+        score/=3
         env.close()
         rewards.append({"score":score,"index":i["index"]})
 
