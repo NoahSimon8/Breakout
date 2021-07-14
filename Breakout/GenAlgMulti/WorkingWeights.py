@@ -10,7 +10,7 @@ weights=np.load("save.npy")
 print(weights)
 # print(weights.shape)
 
-n=network(weights,[128,30,30,4])
+n=network(weights,[128,10,10,4])
 
 for i in range(20):
     ob = env.reset()
