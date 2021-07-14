@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 
 model=keras.Sequential([
-    keras.layers.Conv2D(10,(1,4),activation="sigmoid",input_shape=(1,128,)),
+    keras.layers.Conv2D(10,(1,4),activation="sigmoid",input_shape=(1,128,1,)),
     keras.layers.MaxPooling2D((1,2)),
     keras.layers.Conv2D(10,(1,4),activation="sigmoid"),
     keras.layers.MaxPooling2D((1,2)),
@@ -16,3 +16,5 @@ model=keras.Sequential([
 
 model.compile(optimizer="adam",loss="categorical_crossentropy",metrics=["accuracy"])
 print(model.summary())
+
+model.get_weights()
