@@ -15,6 +15,6 @@ model=keras.Sequential([
     keras.layers.Dense(10,activation="softmax")])
 
 model.compile(optimizer="adam",loss="categorical_crossentropy",metrics=["accuracy"])
-print(model.summary())
-
-model.get_weights()
+# print(model.summary())
+print("weights")
+print(model.get_layer(name=None,index=1).get_weights())

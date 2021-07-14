@@ -44,7 +44,7 @@ def reward(gene):
         prevob = ob
         while True:
             ob=np.array([ob])
-            ob/=255
+            ob = ob.astype("float16") / 255
             prevlives=info["ale.lives"]
             move=np.argmax(n.predict(ob,0,prevob))+2
             # move=np.argmax(move)
