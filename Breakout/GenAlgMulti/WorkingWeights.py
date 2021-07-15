@@ -21,7 +21,7 @@ for i in range(20):
     while True:
         sleep(0.02)
         ob=np.array([ob])
-        print(ob.shape)
+        # print(ob.shape)
         env.render()
         ob, reward, done,info=env.step(np.argmax(n.predict(ob,0,ob)))
         if info['ale.lives']==4:
