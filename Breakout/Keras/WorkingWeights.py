@@ -5,12 +5,12 @@ import numpy as np
 from GeneticAlgorithemFast import*
 from GeneToNetwork import*
 env=gym.make("Breakout-ram-v0")
-#
-# weights=np.load("save.npy")
-# print(weights)
+
+weights=np.load("save.npy")
+print(weights)
 # print(weights.shape)
 
-# n=network(weights,[128,10,10,4])
+n=network(weights,[128,10,10,4])
 
 for i in range(20):
     ob = env.reset()
@@ -21,7 +21,6 @@ for i in range(20):
     while True:
         sleep(0.02)
         ob=np.array([ob])
-        print(ob.shape)
         # print(ob.shape)
         env.render()
         ob, reward, done,info=env.step(np.argmax(n.predict(ob,0,ob)))

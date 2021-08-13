@@ -12,7 +12,9 @@ class network():
             self.create()
         else:
             self.numgenes=self.numGenes()
-    def create(self):
+
+
+    def create(self):  #Takes list  from genetic alg and turns it into the shape for the network
         w=[]
         layersize=[]
         for n, i in enumerate(self.layerinfo):

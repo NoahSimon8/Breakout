@@ -22,14 +22,16 @@
 # print(two-three)
 # print(three-four)
 
-
-
+#
+#
 import gym
 import random
 import numpy as np
 
-env = gym.make("Breakout-ram-v0", frameskip=1)
-one=np.array(env.reset()).astype("int8")
-ob, reward, done, info = env.step(1)
-ob=np.array([ob])
-print(ob/255)
+# env = gym.make("Breakout-ram-v0", frameskip=1)
+# one=np.array(env.reset()).astype("int8")
+# ob, reward, done, info = env.step(1)
+# ob=np.array([ob])
+# print(ob/255)
+
+print(np.array([1,2,3]))
